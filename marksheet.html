@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0%;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .marksheet {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <body>
+      <div class="marksheet">
+        <h1>Marksheet</h1>
+        <p>
+          <input
+            type="number"
+            placeholder="Enter sub 1 mark"
+            id="num1"
+            min="10"
+            max="99"
+          /><br /><br />
+          <input
+            type="number"
+            placeholder="Enter sub 2 mark"
+            id="num2"
+            min="10"
+            max="99"
+          /><br /><br />
+          <input
+            type="number"
+            placeholder="Enter sub 3 mark"
+            id="num3"
+            min="10"
+            max="99"
+          /><br /><br />
+          <input
+            type="number"
+            placeholder="Enter sub 4 mark"
+            id="num4"
+            min="10"
+            max="99"
+          /><br /><br />
+          <input
+            type="number"
+            placeholder="Enter sub 5 mark"
+            id="num5"
+            min="10"
+            max="99"
+          /><br /><br />
+        </p>
+        <p>Total Marks: <span id="total"></span></p>
+        <p>Average: <span id="average"></span></p>
+        <p>Grade: <span id="grade"></span></p>
+        <button onclick="calculateMarks()">Calculate</button>
+        <button onclick="resetMarks()">Reset</button>
+      </div>
+
+      <script>
+        function calculateMarks() {
+          let num1 = parseFloat(document.getElementById("num1").value);
+          let num2 = parseFloat(document.getElementById("num2").value);
+          let num3 = parseFloat(document.getElementById("num3").value);
+          let num4 = parseFloat(document.getElementById("num4").value);
+          let num5 = parseFloat(document.getElementById("num5").value);
+
+          const totalMarks = num1 + num2 + num3 + num4 + num5;
+          const total = 500;
+          const average = (totalMarks * 100) / total;
+          console.log(average);
+          let grade = "";
+
+          if (average >= 90) {
+            grade = "A+";
+          } else if (average >= 80) {
+            grade = "A";
+          } else if (average >= 70) {
+            grade = "B";
+          } else if (average >= 60) {
+            grade = "C";
+          } else if (average >= 50) {
+            grade = "D";
+          } else {
+            grade = "Fail";
+          }
+
+          document.getElementById("total").textContent = totalMarks;
+          document.getElementById("average").textContent = average.toFixed(2);
+          document.getElementById("grade").textContent = grade;
+        }
+
+        function resetMarks() {
+          document.getElementById("num1").value = "";
+
+          document.getElementById("num2").value = "";
+          document.getElementById("num3").value = "";
+          document.getElementById("num4").value = "";
+          document.getElementById("num5").value = "";
+          document.getElementById("total").textContent = "";
+          document.getElementById("average").textContent = "";
+          document.getElementById("grade").textContent = "";
+        }
+      </script>
+    </body>
+  </body>
+</html>
