@@ -4,120 +4,127 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
-    <style>
-      * {
-        padding: 0;
-        margin: 0%;
-      }
-      body {
-        width: 100vw;
-        height: 100vh;
-      }
-
-      .marksheet {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background-color: aqua;
-      }
-    </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <body>
-      <h1>Marksheet</h1>
-      <div class="marksheet">
-        <h1>Marksheet</h1>
-        <p>
-          <input
-            type="number"
-            placeholder="Enter sub 1 mark"
-            id="num1"
-            min="10"
-            max="99"
-          /><br /><br />
-          <input
-            type="number"
-            placeholder="Enter sub 2 mark"
-            id="num2"
-            min="10"
-            max="99"
-          /><br /><br />
-          <input
-            type="number"
-            placeholder="Enter sub 3 mark"
-            id="num3"
-            min="10"
-            max="99"
-          /><br /><br />
-          <input
-            type="number"
-            placeholder="Enter sub 4 mark"
-            id="num4"
-            min="10"
-            max="99"
-          /><br /><br />
-          <input
-            type="number"
-            placeholder="Enter sub 5 mark"
-            id="num5"
-            min="10"
-            max="99"
-          /><br /><br />
-        </p>
-        <p>Total Marks: <span id="total"></span></p>
-        <p>Average: <span id="average"></span></p>
-        <p>Grade: <span id="grade"></span></p>
-        <button onclick="calculateMarks()">Calculate</button>
-        <button onclick="resetMarks()">Reset</button>
+  <body class="h-[100vh] mt-2 flex items-center justify-center bg-aqua">
+    <div
+      class="marksheet mt-3 text-center w-72 bg-white p-8 rounded-md shadow-md"
+    >
+      <h1
+        class="text-2xl sm:text-2xl mb-4 text-center md:text-3xl lg:text-4xl font-semibold"
+      >
+        Marksheet
+      </h1>
+      <div>
+        <input
+          type="number"
+          placeholder="Enter sub 1 mark"
+          id="num1"
+          min="10"
+          max="99"
+          class="block w-full py-2 border px-2 rounded-md focus:outline-none focus:border-blue-500"
+        />
+        <input
+          type="number"
+          placeholder="Enter sub 2 mark"
+          id="num2"
+          min="10"
+          max="99"
+          class="block w-full py-2 border px-2 mt-3 focus:outline-none focus:border-blue-500"
+        />
+        <input
+          type="number"
+          placeholder="Enter sub 3 mark"
+          id="num3"
+          min="10"
+          max="99"
+          class="block w-full py-2 px-2 mt-3 border rounded-md focus:outline-none focus:border-blue-500"
+        />
+        <input
+          type="number"
+          placeholder="Enter sub 4 mark"
+          id="num4"
+          min="10"
+          max="99"
+          class="block w-full px-2 py-2 mt-3 border rounded-md focus:outline-none focus:border-blue-500"
+        />
+        <input
+          type="number"
+          placeholder="Enter sub 5 mark"
+          id="num5"
+          min="10"
+          max="99"
+          class="block w-full px-2 py-2 mt-3 border rounded-md focus:outline-none focus:border-blue-500"
+        />
       </div>
+      <p class="font-semibold">
+        Total Marks: <span class="font-bold" id="total"></span>
+      </p>
+      <p class="font-semibold">
+        Average: <span class="font-bold" id="average"></span>
+      </p>
+      <p class="font-semibold">
+        Grade: <span class="font-bold" id="grade"></span>
+      </p>
+      <button
+        class="px-4 py-2 text-white bg-blue-500 rounded-md focus:outline-none hover:bg-blue-600"
+        onclick="calculateMarks()"
+      >
+        Calculate
+      </button>
+      <button
+        class="px-4 py-2 mt-2 text-white bg-red-500 rounded-md focus:outline-none hover:bg-red-600"
+        onclick="resetMarks()"
+      >
+        Reset
+      </button>
+    </div>
 
-      <script>
-        function calculateMarks() {
-          let num1 = parseFloat(document.getElementById("num1").value);
-          let num2 = parseFloat(document.getElementById("num2").value);
-          let num3 = parseFloat(document.getElementById("num3").value);
-          let num4 = parseFloat(document.getElementById("num4").value);
-          let num5 = parseFloat(document.getElementById("num5").value);
+    <script>
+      function calculateMarks() {
+        let num1 = parseFloat(document.getElementById("num1").value) || 0;
+        let num2 = parseFloat(document.getElementById("num2").value) || 0;
+        let num3 = parseFloat(document.getElementById("num3").value) || 0;
+        let num4 = parseFloat(document.getElementById("num4").value) || 0;
+        let num5 = parseFloat(document.getElementById("num5").value) || 0;
 
-          const totalMarks = num1 + num2 + num3 + num4 + num5;
-          const total = 500;
-          const average = (totalMarks * 100) / total;
-          console.log(average);
-          let grade = "";
+        const totalMarks = num1 + num2 + num3 + num4 + num5;
+        const total = 500;
+        const average = (totalMarks * 100) / total;
+        let grade = "";
 
-          if (average >= 90) {
-            grade = "A+";
-          } else if (average >= 80) {
-            grade = "A";
-          } else if (average >= 70) {
-            grade = "B";
-          } else if (average >= 60) {
-            grade = "C";
-          } else if (average >= 50) {
-            grade = "D";
-          } else {
-            grade = "Fail";
-          }
-
-          document.getElementById("total").textContent = totalMarks;
-          document.getElementById("average").textContent = average.toFixed(2);
-          document.getElementById("grade").textContent = grade;
+        if (average >= 90) {
+          grade = "A+";
+        } else if (average >= 80) {
+          grade = "A";
+        } else if (average >= 70) {
+          grade = "B";
+        } else if (average >= 60) {
+          grade = "C";
+        } else if (average >= 50) {
+          grade = "D";
+        } else {
+          grade = "Fail";
         }
 
-        function resetMarks() {
-          document.getElementById("num1").value = "";
+        document.getElementById("total").textContent = totalMarks;
+        document.getElementById("average").textContent = average.toFixed(2);
+        document.getElementById("grade").textContent = grade;
+      }
 
-          document.getElementById("num2").value = "";
-          document.getElementById("num3").value = "";
-          document.getElementById("num4").value = "";
-          document.getElementById("num5").value = "";
-          document.getElementById("total").textContent = "";
-          document.getElementById("average").textContent = "";
-          document.getElementById("grade").textContent = "";
-        }
-      </script>
-    </body>
+      function resetMarks() {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("num3").value = "";
+        document.getElementById("num4").value = "";
+        document.getElementById("num5").value = "";
+        document.getElementById("total").textContent = "";
+        document.getElementById("average").textContent = "";
+        document.getElementById("grade").textContent = "";
+      }
+    </script>
   </body>
 </html>
